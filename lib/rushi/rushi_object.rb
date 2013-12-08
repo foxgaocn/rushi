@@ -1,4 +1,6 @@
 require 'json'
+require 'ostruct'
+
 module Rushi
   class RushiObject
     def self.objectify(json)
@@ -37,26 +39,31 @@ module Rushi
     def self.rubify_key(key)
       s = StringScanner.new(key)
       ret = ""
+      remaining = key
       while (val = s.scan_until(/[A-Z]+/)) do
         if (s.pos == 1 || s.pos - s.matched_size == 0)
           ret << val.downcase
+          remaining = s.post_match
         elsif(s.pos == key.size)
           ret << val[0, val.size - s.matched.size]
           ret << '_'
           ret << s.matched.downcase
+          remaining = s.post_match
         elsif(s.matched.size == 1)
           ret << val[0, val.size - 1]
           ret << '_'
           ret << s.matched.downcase
+          remaining = s.post_match
         else
           ret << val[0, val.size - s.matched.size]
           ret << '_'
           ret << val[val.size - s.matched.size, s.matched.size - 1].downcase
           ret << '_'
-          ret << val[s.matched.size+2, 1].downcase
+          ret << val[val.size - 1 , 1].downcase
+          remaining = s.post_match
         end  
       end
-      ret == "" ? key : ret
+      ret << remaining
     end
   end	
 end
