@@ -17,18 +17,18 @@ Or install it yourself as:
 ## Usage
 
 1. Convert simple json:
-  	os = Rushi::RushiObject.objectify('{"foo1":"bar1", "foo2":true }
-  	os.foo1 == "bar1"
-  	os.foo2 = true
+    os = Rushi::RushiObject.objectify('{"foo1":"bar1", "foo2":true }
+    os.foo1 == "bar1"
+    os.foo2 = true
 2. Convert array:
-	array = Rushi::RushiObject.objectify('[{"foo1":"bar1"}, {"foo2":true}]')
-	array[0].foo1 == "bar1"
-	array[1].foo2 == true
+    array = Rushi::RushiObject.objectify('[{"foo1":"bar1"}, {"foo2":true}]')
+    array[0].foo1 == "bar1"
+    array[1].foo2 == true
 3. Create ruby convention
-	os = Rushi::RushiObject.objectify('{"isActive":true, "UID":"1234", "hasHTML":false }
-	os.is_active == true
-	os.uid == "1234"
-	os.has_html == false
+    os = Rushi::RushiObject.objectify('{"isActive":true, "UID":"1234", "hasHTML":false }
+    os.is_active == true
+    os.uid == "1234"
+    os.has_html == false
 
 ## Contributing
 
