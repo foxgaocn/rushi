@@ -1,5 +1,6 @@
 require 'json'
 require 'ostruct'
+require 'strscan'
 
 module Rushi
   class RushiObject
