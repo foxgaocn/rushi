@@ -24,7 +24,7 @@ module Rushi
       open_struct = OpenStruct.new
       hash.each  do |key, value| 
         rubified_key = rubify_key(key)
-        open_struct.new_ostruct_member rubified_key
+        open_struct.member = rubified_key.to_sym
         if(value.is_a?(Hash))
           obj_val = self.rubify_hash(value)
         elsif (value.kind_of?(Array))
