@@ -16,7 +16,9 @@ module Rushi
 
     def self.generate_array(hash)
       array = Array.new
-      hash.each { |item| array.push(rubify_hash(item)) }
+      hash.each do |item| 
+        item.is_a?(Hash) ? array.push(rubify_hash(item)) : array.push(item)
+      end
       array
     end
 

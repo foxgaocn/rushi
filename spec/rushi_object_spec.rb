@@ -78,5 +78,57 @@ describe Rushi::RushiObject do
     end
   end
 
+  describe "integration" do
+    
+                   
+    it 'should parse a complex string' do
+      json = <<-EOF
+      [
+                    {
+                        "entitlements": [
+                            "Phone Support",
+                            "Upgrades",
+                            "Cloud File",
+                            "Phone Support",
+                            "Upgrades",
+                            "Cloud File",
+                            "Phone Support",
+                            "Upgrades",
+                            "Cloud File",
+                            "Phone Support",
+                            "Upgrades",
+                            "Cloud File"
+                        ],
+                        "cdfId": "19fd776d-0e64-4f5f-acdc-d1790caf0d45",
+                        "serialNumber": "614227897103",
+                        "productLine": "Business Basics",
+                        "version": "2011.1",
+                        "inTheCloud": "Y",
+                        "status": "Active",
+                        "cloudDataFile": "614227897103 - CDF3",
+                        "serviceApplicationId": "1-1874978128"
+                    },
+                    {
+                        "entitlements": [
+                            "Phone Support",
+                            "Upgrades",
+                            "Cloud File"
+                        ],
+                        "cdfId": "49987fdb-7b68-4115-adfd-cdae36160dc4",
+                        "serialNumber": "617083527740",
+                        "productLine": "Business Basics",
+                        "version": "2012.8",
+                        "inTheCloud": "N",
+                        "status": "Active",
+                        "cloudDataFile": "617083527740 - CDF4",
+                        "serviceApplicationId": "1-1988917448"
+                    }]
+      EOF
+      obj = Rushi::RushiObject.objectify(json)
+      obj[0].entitlements.include?("Upgrades").should == true
+    end
+
+  end
+
 
 end
